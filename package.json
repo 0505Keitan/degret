@@ -1,0 +1,7 @@
+{
+  "name": "modeler",
+  "private": true,
+  "dependencies": {
+    "bresenham-js": "0.0.0"
+  }
+}

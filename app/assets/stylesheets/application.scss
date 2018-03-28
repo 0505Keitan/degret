@@ -1,0 +1,430 @@
+@import "bootstrap";
+
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1;
+}
+
+h1 {
+	font-size: 2.8em;
+	font-weight: bold;
+	letter-spacing: -2px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.2em;
+	letter-spacing: -1px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: normal;
+	color: #777;
+}
+
+p {
+	font-size: 1.1em;
+	line-height: 1.7em;
+}
+
+li {
+	list-style: none;
+}
+
+body {
+	color: #e2e2e2;
+	background-color: #272121;
+	font-weight: 300;
+}
+
+.navbar {
+	background-color: #363333;
+}
+
+.nav-link {
+	color: #fff;
+	outline: none; 
+}
+
+.nav-item > a:hover {
+	text-decoration: none;
+}
+
+.navbar-brand {
+	color: #000;
+	font-weight: 500;
+}
+
+.line {
+	background-color: #777;
+	border: 1px solid #000;
+	color:white;
+	z-index: 10;
+}
+
+.changeblock {
+	background-color: rgba(255,255,121,0.3);;
+	border: 1px solid #000;
+}
+
+.form {
+	padding-bottom: 20px;
+}
+
+.top-container {
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.col-sm-6 {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.card {
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+.card-body {
+	padding: 0px;
+}
+
+.card-left {
+	float: left;
+}
+
+.card-right {
+	float: right;
+}
+
+.card-header-left {
+	background-color: #ed6234;
+	color: #fff;
+	font-size: 1.2em;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	line-height: 33px;
+}
+
+.card-header-right {
+	background-color: #ed6234;
+	color: #fff;
+	font-size: 1.2em;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.card-header-left::before {
+	content: "\f2cc";
+	font-family: FontAwesome;
+	font-size: 1.2em;
+	padding-right: 5px;
+}
+
+.card-header-right::before {
+	content: "\f1ce";
+	font-family: FontAwesome;
+	font-size: 1.2em;
+	padding-right: 5px;
+}
+
+.main-card {
+	box-shadow: 0 1px 1px 1px rgba(0,0,0,.2);
+	margin-bottom: 20px;
+	background: #363333;
+	margin-top: 0px;
+}
+
+.card-header {
+	text-align: center;
+	padding: 10px;
+	background-color: #363333;
+	border-bottom: 1px solid #272121;
+}
+
+.card-about {
+	margin-top: 20px;
+}
+
+.about-top {
+	font-weight: 300;
+	padding-left: 7px;
+	border-left: solid 5px rgb(200, 0, 0);
+	color: #fff;
+}
+
+.card-about > .card-body {
+	padding: 20px;
+}
+
+.about-h6 {
+	padding-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 0px;
+	font-weight: 300;
+}
+
+.about-h6::before {
+	content: "\f17b";
+	font-family: FontAwesome;
+	font-size: 1.2em;
+	padding-right: 5px;
+	color: #f47d42; 
+	font-weight: 800;
+}
+
+.profile-image {
+	float: left;
+	margin-right: 20px;
+}
+
+.about-twitter {
+	margin-top: 7px;
+}
+
+.card-header-grid {
+	text-align: center;
+	padding: 10px;
+}
+
+.card-header-developer {
+	background-color: #686666;
+	color: #fff;
+	font-size: 1.2em;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.card-header-developer::before {
+	content: "\f196";
+	font-family: FontAwesome;
+	font-size: 1.2em;
+	padding-right: 5px;
+}
+
+.card-grid {
+	float: left;
+	padding: 0px;
+	z-index: 10;
+	border-top: 1px solid #000;
+}
+
+.card-developer {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.card-share {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.card-header-share {
+	background-color: #7fc5ff;
+	color: #fff;
+	font-size: 1.2em;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.card-body {
+	background-color: #363333;
+}
+
+.card-body > a {
+	margin-right: 20px;
+}
+
+.card-news {
+	border-bottom: 1px solid #000;
+	border-bottom-style: dotted;
+}
+
+.card-news-new::after {
+	content: "new";
+	font-size: 0.8em;
+	color: #ff6551;
+}
+
+.card-setting {
+	float: right;
+	padding-left: 0px;
+	padding-right: 0px;
+	height: 100%;
+	border-top: 1px solid #000;
+
+}
+
+.top-hr {
+	margin: 20px;
+	box-shadow: 0 0px 1px 0px rgba(0,0,0,.2);
+}
+
+.button1 {
+	background-color: white; 
+	color: black; 
+	border: 2px solid #4CAF50;
+	border-radius: 5px;
+	background-color: #686666;
+	border: none;
+	color: white;
+	padding: 6px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.main-col {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.developer_image {
+	width: 20%;
+	border-radius: 50%;
+	border: 4px solid #777;
+	border-radius: 50%;
+	height: auto;
+	margin-top: 20px;
+}
+
+.develop-bio {
+	font-weight: 200;
+}
+
+.developer-twitter::before {
+	content: "\f35a";
+	font-family: FontAwesome;
+	font-size: 1.2em;
+	padding-right: 5px;
+	color: #e2e2e2; 
+}
+
+.btn-mode {
+	float: left;
+	padding: 10px;
+	border: 1px solid #777;
+	border-radius: 5px;
+	width: 50%;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+	background-color: #363333;
+	border-style: none;
+}
+
+.tabmenu > li > a:hover {
+	background-color: #363333;
+	border-style: none;
+}
+
+.nav-tabs {
+	border-style: none;
+	background-color: #272121;
+}
+
+.nav-tabs .nav-link {
+	border-style: none;
+	border-top-left-radius: 0.25rem;
+	border-top-right-radius: 0.25rem;
+}
+
+.tab-content {
+	margin-top: 20px;
+}
+
+.tab-pane {
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+.grid {
+	padding: 20px;
+	background-color: #272121;
+	width: 100%;
+}
+
+#MyCanvas {
+	width: 100%;
+	border: 2px solid #000;
+}
+
+.footer-ver {
+	font-size: 1.1em;
+	margin-bottom: 5px;
+}
+
+.copyright {
+	font-size: 0.9em;
+	color: #e2e2e2;
+}
+
+.input-range[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #eaeaea;
+	height: 2px;
+	width: 100%;
+	border-radius: 6px;
+	margin-top: 12px;
+
+	&:focus,
+	&:active {
+		outline: none;
+	}
+
+	&::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		cursor: pointer;
+		position: relative;
+		width: 22px;
+		height: 22px;
+		display: block;
+		background-color: #e2e2e2;
+		border-radius: 50%;
+		-webkit-border-radius: 50%;
+	}
+}
+
+#loading {
+	width: 96px; /* gif画像の幅 
+	height: 96px; /* gif画像の高さ */
+	margin: -68px 0 0 -68px; /* gif画像を画面中央に */
+	position: fixed; /* gif画像をスクロールさせない */
+	left: 50%; /* gif画像を画面横中央へ */
+	top: 50%; /* gif画像を画面縦中央へ */
+	z-index: 20;
+}
+
+footer {
+	cursor: pointer;
+}
+
+.footer_links {
+	color: #e2e2e2;
+	font-size: 0.9em;
+	padding: 0px;
+	display: inline-block;
+	list-style: none;
+	padding: 0 2px;
+	cursor: pointer;
+}
+
+.footer_links:hover {
+	color: #fff;
+}
+
+.footer_twitter::before {
+	content: "\f35a";
+	font-family: FontAwesome;
+	font-size: 1.2em;
+	padding-right: 5px;
+	color: #e2e2e2; 
+}

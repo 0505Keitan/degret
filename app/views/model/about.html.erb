@@ -1,0 +1,28 @@
+<%= render 'layouts/navbar' %>
+<h5 class="text-center" style="padding-top: 20px;font-weight: 300;color: #fff;">このサイトについて</h5>
+<div class="col-sm-8 offset-sm-2 card-about" style="margin-bottom: 20px;">
+	<div class="card-body">
+		<h5 class="about-top">概要</h5>	
+		<h6 style="padding-top: 10px;font-weight: 300;">Degretは、Minecraft向けのブロック設置補助ツールです。</h6>
+		<h6 class="about-h6">入力した角度に沿ったブロックの置き方を表示してくれます</h6>
+		<h6 class="about-h6">円モード・楕円モードにより円の置き方を表示してくれます</h6>
+		<h6 class="about-h6" style="padding-bottom: 20px;">画像出力に対応しています</h6>
+		<hr style="background-color: #272121;">
+		<h5 class="about-top">使い方</h5>	
+		<h6 class="about-h6" style="padding-bottom: 20px;">設定を変更して、更新するだけです:)</h6>
+		<hr style="background-color: #272121;">
+		<h5 class="about-top">開発者プロフィール</h5>	
+		<div class="about-profile">
+			<%= image_tag("no-sa.PNG", width:"75", height:"75", style:"border: 3px solid #272121;border-radius:50%;margin-top: 7px;", class:"profile-image") %>
+			<ul class="profile-content">
+				<li>・のーさ</li>
+				<li>・趣味でプログラミングを学んでいる、新高校一年生です。</li>
+				<li>・このサイトに関するお問い合わせや要望等はTwitterのDMで受け付けています。</li>
+				<li class="footer_twitter about-twitter">開発者Twitter : <a href="https://twitter.com/mcpe_Reproduce" style="color: #fff;">https://twitter.com/mcpe_Reproduce</a></li>
+			</ul>
+		</div>
+		<hr style="background-color: #272121;">
+		<h6 class="text-center" style="font-weight: 300;color: #fff;margin-bottom: 0px;">このサイトは、<a href="https://www.mojang.com" style="color: #f46e41;">Mojang</a> とは一切関係ありません。</h6>	
+	</div>
+</div>
+<%= render 'layouts/footer' %>

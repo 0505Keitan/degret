@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Degret | ブロック設置補助ツール</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
+  <meta name="google-site-verification" content="rpIYoUyFJjA00J0A1AsHk6bI_47PgqtXLkd6ESXlXPg" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Minecrafter向けのブロック設置補助ツールです。入力した角度に沿ってブロックの置き方を一目で確認頂けます。">
+  <meta name="keywords" content="Degret,Minecraft,マインクラフト,マイクラ,斜め建築,ツール,角度">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta name="author" content="のーさ">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-5359458065350498",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<body>
+  <%= yield %>
+</body>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114396593-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114396593-1');
+</script>
+</html>

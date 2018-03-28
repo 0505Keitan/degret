@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+</head>
+<body>
+	<%= render 'layouts/navbar' %>
+	<div class="col-sm-12 main-col">
+		<div class="card main-card">
+			<div class="card-body">
+				<div class="card-setting col-sm-5">
+					<header class="card-header">設定</header>
+					<div class="card-body">
+						<ul class="nav nav-tabs tabmenu">
+							<li class="nav-item">
+								<a href="#tabline" class="nav-link active" onclick="lineclick()" data-toggle="tab" style="color: #777;"><%= image_tag("degret-line.png", width: "20", height: "20", alt: "Line") %></a>
+							</li>
+							<li class="nav-item">
+								<a href="#tabcircle" class="nav-link" onclick="circleclick()" data-toggle="tab" style="color: #777;"><%= image_tag("degret-circle.png", width: "20", height: "20", alt: "Circle") %></a>
+							</li>
+							<li class="nav-item">
+								<a href="#tabellipse" class="nav-link" onclick="ellipseclick()" data-toggle="tab" style="color: #777;"><%= image_tag("degret-ellipse.png", width: "20", height: "20", alt: "Ellipse") %></a>
+							</li>
+							<li class="nav-item">
+								<a href="#tabpolygon" class="nav-link" onclick="polygonclick()" data-toggle="tab" style="color: #777;"><%= image_tag("degret-polygon.png", width: "20", height: "20", alt: "Polygon") %></a>
+							</li>
+							<li class="nav-item">
+								<a href="#tabshare" class="nav-link" onclick="" data-toggle="tab" style="color: #777;"><%= image_tag("degret-share.png", width: "20", height: "20", alt: "share") %></a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<form name="num_form" class="tab-pane active" id="tabline">
+								<div class="form-group row">
+									<label for="grid_form" class="col-sm-4 col-form-label radius-form">グリッドの大きさ : <output name="grid_form" id="grid_output_id">41</output></label>
+									<div class="col-sm-8">
+										<input type="range" name="grid_form" id="grid_input_id" class="input-range" value="41" min="3" max="257" oninput="grid_output_id.value = grid_input_id.value">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="number_form" class="col-sm-4 col-form-label">角度 :</label>
+									<div class="col-sm-8">
+										<input type="number" class="form-control" id="number_form" placeholder="0" min="0" max="360">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="distance_form" class="col-sm-4 col-form-label">距離 :</label>
+									<div class="col-sm-8">
+										<input type="number" class="form-control" id="distance_form" placeholder="1" min="1" max="257">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-12">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="check">
+											<label class="form-check-label" for="check">
+												上書きしない
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-12">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="centercheck">
+											<label class="form-check-label" for="centercheck">
+												始点をグリッドの中心にする *
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-12">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="addcheck">
+											<label class="form-check-label" for="addcheck">
+												始点を最後に描画した座標にする *
+											</label>
+										</div>
+									</div>
+								</div>
+								<h6 style="font-size: 0.8em;color: #f46e41;font-weight: 300;">*始点については、同時に2つのオプションを指定することはできません</h6>
+								<div class="form-group row">
+									<div class="col-sm-10">
+										<input type="button" class="button button1" value="更新" onclick="numchange()">
+										<input type="button" class="button button1" value="クリア" onclick="init_canvas();">
+										<a class="twitter-share-button"
+										href="https://twitter.com/intent/tweet?text=Degret | ブロック設置補助ツール &url=https://www.degret.net" style="margin-left: 20px;margin-top: 8px;"></a>
+										<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.degret.net&width=130&layout=button_count&action=like&size=small&show_faces=false&share=true&height=46&appId=371648649975589" width="130" height="46" style="border:none;overflow:hidden;vertical-align: top;margin-top: 8px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+									</div>
+								</div>
+							</form>
+							<form name="num_form_circle" class="tab-pane" id="tabcircle">
+								<div class="form-group row">
+									<label for="radius_form" class="col-sm-4 col-form-label radius-form">円の半径 : <output name="radius_form" id="radius_output_id">41</output></label>
+									<div class="col-sm-8">
+										<input type="range" name="radius_form" id="radius_input_id" class="input-range" value="20" min="1" max="128" oninput="radius_output_id.value = radius_input_id.value">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-10">
+										<!-- <input type="button" class="button button1" value="更新" onclick="numchange()"> -->
+										<input type="button" class="button button1" value="クリア" onclick="init_canvas();">
+										<a class="twitter-share-button"
+										href="https://twitter.com/intent/tweet?text=Degret | ブロック設置補助ツール &url=https://www.degret.net" style="margin-left: 20px;margin-top: 8px;"></a>
+										<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.degret.net&width=130&layout=button_count&action=like&size=small&show_faces=false&share=true&height=46&appId=371648649975589" width="130" height="46" style="border:none;overflow:hidden;vertical-align: top;margin-top: 8px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+									</div>
+								</div>
+							</form>
+							<form name="num_form_ellipse" class="tab-pane" id="tabellipse">
+								<div class="form-group row">
+									<label for="ellipse_width_form" class="col-sm-4 col-form-label ellipse-form">楕円の横幅の半径 : <output name="ellipse_width_form" id="ellipse_width_output_id">41</output></label>
+									<div class="col-sm-8">
+										<input type="range" name="ellipse_width_form" id="ellipse_width_input_id" class="input-range" value="41" min="5" max="128" oninput="ellipse_width_output_id.value = ellipse_width_input_id.value">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="ellipse_height_form" class="col-sm-4 col-form-label ellipse-form">楕円の縦幅の半径 : <output name="ellipse_height_form" id="ellipse_height_output_id">41</output></label>
+									<div class="col-sm-8">
+										<input type="range" name="ellipse_height_form" id="ellipse_height_input_id" class="input-range" value="41" min="5" max="128" oninput="ellipse_height_output_id.value = ellipse_height_input_id.value">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-10">
+										<!-- <input type="button" class="button button1" value="更新" onclick="numchange()"> -->
+										<input type="button" class="button button1" value="クリア" onclick="init_canvas();">
+										<a class="twitter-share-button"
+										href="https://twitter.com/intent/tweet?text=Degret | ブロック設置補助ツール &url=https://www.degret.net" style="margin-left: 20px;margin-top: 8px;"></a>
+										<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.degret.net&width=130&layout=button_count&action=like&size=small&show_faces=false&share=true&height=46&appId=371648649975589" width="130" height="46" style="border:none;overflow:hidden;vertical-align: top;margin-top: 8px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+									</div>
+								</div>
+							</form>
+							<form name="num_form_polygon" class="tab-pane" id="tabpolygon">
+								<div class="input-group mb-3">
+									<select class="custom-select" id="polygon_input_id">
+										<option selected>選んでください</option>
+										<option value="1">三角形</option>
+										<option value="2">四角形</option>
+										<option value="3">五角形</option>
+										<option value="4">六角形</option>
+										<option value="5">七角形</option>
+										<option value="6">八角形</option>
+										<option value="7">九角形</option>
+										<option value="8">十角形</option>
+									</select>
+								</div>
+								<div class="form-group row">
+									<label for="polygon_degree_form" class="col-sm-4 col-form-label">多角形の傾き :</label>
+									<div class="col-sm-8">
+										<input type="number" class="form-control" id="polygon_degree_form" placeholder="0" min="0" max="360">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="polygon_distance_form" class="col-sm-4 col-form-label">多角形の一辺の長さ :</label>
+									<div class="col-sm-8">
+										<input type="number" class="form-control" id="polygon_distance_form" placeholder="1" min="1" max="30">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-10">
+										<!-- <input type="button" class="button button1" value="更新" onclick="numchange()"> -->
+										<input type="button" class="button button1" value="更新" onclick="numchange()">
+										<input type="button" class="button button1" value="クリア" onclick="init_canvas();">
+										<a class="twitter-share-button"
+										href="https://twitter.com/intent/tweet?text=Degret | ブロック設置補助ツール &url=https://www.degret.net" style="margin-left: 20px;margin-top: 8px;"></a>
+										<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.degret.net&width=130&layout=button_count&action=like&size=small&show_faces=false&share=true&height=46&appId=371648649975589" width="130" height="46" style="border:none;overflow:hidden;vertical-align: top;margin-top: 8px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+									</div>
+								</div>
+							</form>
+							<form name="share_form" class="tab-pane" id="tabshare">
+								<div class="form-group row">
+									<div class="col-sm-12">
+										<a class="button button1" download="degret.jpg" id="download" onclick="image()">画像をダウンロード</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-7 card-grid">
+					<header class="card-header">グリッド</header>
+					<div class="grid card-body">
+						<canvas id="MyCanvas" style="paddling:0;"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%= render 'layouts/footer' %>
+</body>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114396593-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-114396593-1');
+</script>
+</html>
