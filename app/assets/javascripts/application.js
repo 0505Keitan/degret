@@ -58,6 +58,9 @@ function init_canvas() {
 	document.getElementById("ellipse_height_output_id").value = 41;
 	document.getElementById("number_form").value = null;
 	document.getElementById("distance_form").value = null;
+	document.getElementById("polygon_input_id").value = 0;
+	document.getElementById("polygon_degree_form").value = null;
+	document.getElementById("polygon_distance_form").value = null;
 	num_form.centercheck.checked = false;
 	num_form.check.checked = false;
 	num_form.addcheck.checked = false;
@@ -134,49 +137,31 @@ function numchange(){
 		let polygon_number = document.getElementById("polygon_input_id").value;
 		let polygon_degree = document.getElementById("polygon_degree_form").value;
 		let polygon_distance = document.getElementById("polygon_distance_form").value;
-		let polygon_add_degree = 0;
-		switch (polygon_number){
-			case 1:
-			polygon_add_degree = 60;
-			break;
-			case 2:
-			polygon_add_degree = 90;
-			break;
-			case 3:
-			polygon_add_degree = 108;
-			break;
-			case 4:
-			polygon_add_degree = 120
-			break;
-			case 5:
-			polygon_add_degree = 128.57;
-			break;
-			case 6:
-			polygon_add_degree = 135;
-			break;
-			case 7:
-			polygon_add_degree = 140;
-			break;
-			case 8:
-			polygon_add_degree = 144;
-			break;
-		}
-		let nowdegree = 0;
-		for (var i = 0; i <= polygon_number + 2; i++) {
-			if(i == 0) {
+
+		var radDiv = 180 * (parseInt(polygon_number) - 2) / parseInt(polygon_number);
+		var nowdegree = 0;
+		var adddegree = 0;
+		var i;
+		for (i = 0; i <= polygon_number - 1; i++) {
+			if (i == 0) {
 				startPoint.x = Math.floor(canvas_width/2);
 				startPoint.y = Math.floor(canvas_height/2);
 				num_form.centercheck.checked = false;
 				iscentercheck = false;
-				nowdegree = polygon_degree;
-				getPointByDistanceAndDegree(polygon_distance, polygon_degree);
+				nowdegree = parseInt(polygon_degree);
+				adddegree = parseInt(nowdegree);
+				console.log(adddegree);
+				getPointByDistanceAndDegree(polygon_distance, nowdegree);
+			} else {
+				startPoint.x = x2;
+				startPoint.y = y2;
+				num_form.centercheck.checked = false;
+				iscentercheck = false;
+				nowdegree = adddegree;
+				adddegree = parseInt(nowdegree) + 180 - parseInt(radDiv);
+				console.log(adddegree);
+				getPointByDistanceAndDegree(polygon_distance, adddegree);
 			}
-			startPoint.x = x2;
-			startPoint.y = y2;
-			num_form.centercheck.checked = false;
-			iscentercheck = false;
-			let adddegree = nowdegree + 180 - polygon_add_degree;
-			getPointByDistanceAndDegree(polygon_distance, adddegree);
 		}
 	}
 }
