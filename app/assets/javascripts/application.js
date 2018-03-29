@@ -16,24 +16,24 @@
 //= require bootstrap
 //= require rails-ujs
 
-var canvas;
-var ctx;
+let canvas;
+let ctx;
 
-var canvas_magnification = 25;
-var canvas_width  = 41; 
-var canvas_height = 41;    
-var startPoint = {x:0,y:0};
-var x2 = 0;
-var y2 = 0;
+let canvas_magnification = 25;
+let canvas_width  = 41; 
+let canvas_height = 41;    
+let startPoint = {x:0,y:0};
+let x2 = 0;
+let y2 = 0;
 
-var ellipsewidth = 41;
-var ellipseheight = 41;
+let ellipsewidth = 41;
+let ellipseheight = 41;
 
-var isLineRemove = false;
-var isLineNull = true;
-var islinetab = true;
-var iscircletab = false;
-var ispolygontab = false;
+let isLineRemove = false;
+let isLineNull = true;
+let islinetab = true;
+let iscircletab = false;
+let ispolygontab = false;
 
 ///// 内部関数
 
@@ -87,14 +87,14 @@ function drawRule() {
 }
 
 function numchange(){
-	var number = document.getElementById("number_form").value;
-	var distance_number = document.getElementById("distance_form").value;
-	var radius_number = document.getElementById("radius_input_id").value;
+	let number = document.getElementById("number_form").value;
+	let distance_number = document.getElementById("distance_form").value;
+	let radius_number = document.getElementById("radius_input_id").value;
 
 	if(islinetab == true) {
-		var ischeck = num_form.check.checked;
-		var iscentercheck = num_form.centercheck.checked;
-		var isaddcheck = num_form.addcheck.checked;
+		let ischeck = num_form.check.checked;
+		let iscentercheck = num_form.centercheck.checked;
+		let isaddcheck = num_form.addcheck.checked;
 
 		if(ischeck == true){
 			isLineRemove = false;
@@ -131,10 +131,10 @@ function numchange(){
 		drawRule();
 		drawCircle(Math.floor(canvas_width/2), Math.floor(canvas_height/2), radius_number);
 	} else if(ispolygontab == true) {
-		var polygon_number = document.getElementById("polygon_input_id").value;
-		var polygon_degree = document.getElementById("polygon_degree_form").value;
-		var polygon_distance = document.getElementById("polygon_distance_form").value;
-		var polygon_add_degree = 0;
+		let polygon_number = document.getElementById("polygon_input_id").value;
+		let polygon_degree = document.getElementById("polygon_degree_form").value;
+		let polygon_distance = document.getElementById("polygon_distance_form").value;
+		let polygon_add_degree = 0;
 		switch (polygon_number){
 			case 1:
 			polygon_add_degree = 60;
@@ -161,7 +161,7 @@ function numchange(){
 			polygon_add_degree = 144;
 			break;
 		}
-		var nowdegree = 0;
+		let nowdegree = 0;
 		for (var i = 0; i <= polygon_number + 2; i++) {
 			if(i == 0) {
 				startPoint.x = Math.floor(canvas_width/2);
@@ -175,7 +175,7 @@ function numchange(){
 			startPoint.y = y2;
 			num_form.centercheck.checked = false;
 			iscentercheck = false;
-			var adddegree = nowdegree + 180 - polygon_add_degree;
+			let adddegree = nowdegree + 180 - polygon_add_degree;
 			getPointByDistanceAndDegree(polygon_distance, adddegree);
 		}
 	}
@@ -183,7 +183,7 @@ function numchange(){
 
 $(window).ready(function(){
 	$('#grid_input_id').on('change', function() {
-		var gridval = $(this).val();
+		let gridval = $(this).val();
 		canvas_width = (gridval);
 		canvas_height = (gridval);
 		canvas.width  = canvas_width * canvas_magnification;
@@ -193,7 +193,7 @@ $(window).ready(function(){
 		drawRule();
 	})
 	$('#radius_input_id').on('change', function() {
-		var val = $(this).val();
+		let val = $(this).val();
 		canvas_width = (val * 2 + 1);
 		canvas_height = (val * 2 + 1);
 		canvas.width  = canvas_width * canvas_magnification;
@@ -237,9 +237,9 @@ function getPointByDistanceAndDegree(distance, degree){
 }
 
 var drawCircle = function (x0, y0, radius) {
-	var x = Math.floor(radius);
-	var y = Math.floor(0);
-	var radiusError = 1 - x;
+	let x = Math.floor(radius);
+	let y = Math.floor(0);
+	let radiusError = 1 - x;
 	ctx.fillStyle = "rgb(200, 0, 0)";
 
 	while (x >= y) {
@@ -277,14 +277,14 @@ var drawCircle = function (x0, y0, radius) {
 
 function drawEllipse (xc, yc, width, height)
 {
-	var a2 = Math.floor(width * width);
-	var b2 = Math.floor(height * height);
-	var h = Math.floor(height);
-	var w = Math.floor(width);
-	var fa2 = 4 * a2, fb2 = 4 * b2;
-	var x;
-	var y;
-	var sigma;
+	let a2 = Math.floor(width * width);
+	let b2 = Math.floor(height * height);
+	let h = Math.floor(height);
+	let w = Math.floor(width);
+	let fa2 = 4 * a2, fb2 = 4 * b2;
+	let x;
+	let y;
+	let sigma;
 	ctx.fillStyle = "rgb(200, 0, 0)";
 
 	/* first half */
@@ -358,7 +358,7 @@ function polygonclick() {
 }
 
 var drawline = function(x0,y0,x1,y1){
-	var iscentercheck = num_form.centercheck.checked;
+	let iscentercheck = num_form.centercheck.checked;
 
 	if (isLineRemove == true) {
 		ctx.fillStyle = "#272121";  
@@ -408,19 +408,19 @@ var plot = function(x,y){
 }
 
 function image() {
-	var type = 'image/png';
-	var canvas = document.getElementById('MyCanvas');
-	var data = canvas.toDataURL(type);
-	var bin = atob(data.split(',')[1]);
-	var buffer = new Uint8Array(bin.length);
+	let type = 'image/png';
+	let canvas = document.getElementById('MyCanvas');
+	let data = canvas.toDataURL(type);
+	let bin = atob(data.split(',')[1]);
+	let buffer = new Uint8Array(bin.length);
 
 	for (var i = 0; i < bin.length; i++) {
 		buffer[i] = bin.charCodeAt(i);
 	}
 
-	var blob = new Blob([buffer.buffer], {type: type});
-	var url = window.URL.createObjectURL(blob);
+	let blob = new Blob([buffer.buffer], {type: type});
+	let url = window.URL.createObjectURL(blob);
 
-	var downloader = $('#download');
+	let downloader = $('#download');
 	downloader.attr('href', url);
 }

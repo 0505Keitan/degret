@@ -32,6 +32,8 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'rack-rewrite'
 
+gem 'nokogiri', '~> 1.8', '>= 1.8.2'
+
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
