@@ -41,6 +41,7 @@ $(window).on('beforeunload', function() {
 	location.reload();
 });
 
+// グリッドを全てリセット
 function init_canvas() {
 	canvas_width  = 41; 
 	canvas_height = 41; 
@@ -69,6 +70,7 @@ function init_canvas() {
 	drawRule();  
 }
 
+// グリッドの升目を描画
 function drawRule() {
 	ctx.strokeStyle = "#000";
 	ctx.lineWidth = 2;
@@ -89,6 +91,7 @@ function drawRule() {
   ctx.stroke();  
 }
 
+// 更新ボタンが押されたら呼ばれる関数
 function numchange(){
 	let number = document.getElementById("number_form").value;
 	let distance_number = document.getElementById("distance_form").value;
@@ -212,6 +215,7 @@ $(window).ready(function(){
 	})
 });
 
+// 引数で渡された距離と角度で第二地点の座標を計算する関数
 function getPointByDistanceAndDegree(distance, degree){
 	count = 0;
 
@@ -221,6 +225,7 @@ function getPointByDistanceAndDegree(distance, degree){
 	drawline(startPoint.x,startPoint.y,x2,y2);
 }
 
+// 引数で渡された半径から縁を描画する関数
 var drawCircle = function (x0, y0, radius) {
 	let x = Math.floor(radius);
 	let y = Math.floor(0);
@@ -260,6 +265,7 @@ var drawCircle = function (x0, y0, radius) {
 	drawRule();
 };
 
+// 引数で渡された横幅と縦幅から縁を楕円する関数
 function drawEllipse (xc, yc, width, height)
 {
 	let a2 = Math.floor(width * width);
@@ -272,7 +278,7 @@ function drawEllipse (xc, yc, width, height)
 	let sigma;
 	ctx.fillStyle = "rgb(200, 0, 0)";
 
-	/* first half */
+	/* 楕円の半分一つ目 */
 	for (x = 0, y = h, sigma = 2*b2+a2*(1-2*h); b2*x <= a2*y; x++) {
 		ctx.fillRect(Math.abs(xc + x) * canvas_magnification, Math.abs(yc + y) * canvas_magnification,
 			canvas_magnification, canvas_magnification);
@@ -290,7 +296,7 @@ function drawEllipse (xc, yc, width, height)
 		sigma += b2 * ((4 * x) + 6);
 	}
 
-	/* second half */
+	/* 楕円の半分二つ目 */
 	for (x = w, y = 0, sigma = 2*a2+b2*(1-2*w); a2*y <= b2*x; y++) {
 		ctx.fillRect(Math.abs(xc + x) * canvas_magnification, Math.abs(yc + y) * canvas_magnification,
 			canvas_magnification, canvas_magnification);
@@ -342,15 +348,16 @@ function polygonclick() {
 	ispolygontab = true;
 }
 
-var drawline = function(x0,y0,x1,y1){
+// 引数で渡された第一座標と第二座標で直線を描画する関数
+let drawline = function(x0,y0,x1,y1){
 	let iscentercheck = num_form.centercheck.checked;
 
 	if (isLineRemove == true) {
 		ctx.fillStyle = "#272121";  
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 	}
-	var tmp;
-	var steep = Math.abs(y1-y0) > Math.abs(x1-x0);
+	let tmp;
+	let steep = Math.abs(y1-y0) > Math.abs(x1-x0);
 	if(steep){
     //swap x0,y0
     tmp=x0; x0=y0; y0=tmp;
@@ -358,19 +365,19 @@ var drawline = function(x0,y0,x1,y1){
     tmp=x1; x1=y1; y1=tmp;
 }
 
-var sign = 1;
-if(x0>x1){
+let sign = 1;
+if (x0>x1) {
 	sign = -1;
 	x0 *= -1;
 	x1 *= -1;
 }
-var dx = x1-x0;
-var dy = Math.abs(y1-y0);
-var err = ((dx/2));
-var ystep = y0 < y1 ? 1:-1;
-var y = y0;
+let dx = x1-x0;
+let dy = Math.abs(y1-y0);
+let err = ((dx/2));
+let ystep = y0 < y1 ? 1:-1;
+let y = y0;
 
-for(var x=x0;x<=x1;x++){
+for (let x=x0;x<=x1;x++) {
 	if(!(steep ? plot(y,sign*x) : plot(sign*x,y))) return;
 	err = (err - dy);
 	if(err < 0){
@@ -381,9 +388,10 @@ for(var x=x0;x<=x1;x++){
 drawRule();
 }
 
-var plot = function(x,y){
-	var col = Math.floor(x);
-	var row = Math.floor(y);
+// ここで直線を描画
+let plot = function(x,y){
+	let col = Math.floor(x);
+	let row = Math.floor(y);
 
 	ctx.fillStyle = "rgb(200, 0, 0)";  
 	ctx.fillRect(col * canvas_magnification, row * canvas_magnification,
@@ -392,6 +400,7 @@ var plot = function(x,y){
 	return true;
 }
 
+// グリッドを画像に変換してダウンロードする関数
 function image() {
 	let type = 'image/png';
 	let canvas = document.getElementById('MyCanvas');
