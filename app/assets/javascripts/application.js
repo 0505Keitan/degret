@@ -40,6 +40,7 @@ let opentab = 1;
 
 ///// 内部関数
 
+// ページ移動で強制リロード
 $(window).on('beforeunload', function() {
 	location.reload();
 });
@@ -346,6 +347,7 @@ function polygonclick() {
 	opentab = 4;
 };
 
+// グリッド状の線を全て消す関数
 function lineRemove() {
 	ctx.fillStyle = "#272121";  
 	ctx.fillRect(0,0,canvas.width,canvas.height);
