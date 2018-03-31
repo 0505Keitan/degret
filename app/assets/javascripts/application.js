@@ -143,6 +143,7 @@ function numchange(){
 	}
 }
 
+// レンジの値が変更された時に呼ばれる関数
 $(window).ready(function(){
 	$('#grid_input_id').on('change', function() {
 		gridval = $(this).val();
