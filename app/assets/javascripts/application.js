@@ -19,6 +19,7 @@
 let canvas;
 let ctx;
 
+let gridval = 41;
 let canvas_magnification = 25;
 let canvas_width  = 41; 
 let canvas_height = 41;    
@@ -34,6 +35,8 @@ let isLineNull = true;
 let islinetab = true;
 let iscircletab = false;
 let ispolygontab = false;
+
+let opentab = 1;
 
 ///// 内部関数
 
@@ -93,85 +96,56 @@ function drawRule() {
 
 // 更新ボタンが押されたら呼ばれる関数
 function numchange(){
-	let number = document.getElementById("number_form").value;
-	let distance_number = document.getElementById("distance_form").value;
-	let radius_number = document.getElementById("radius_input_id").value;
+	const number = document.getElementById("number_form").value;
+	const distance_number = document.getElementById("distance_form").value;
+	const radius_number = document.getElementById("radius_input_id").value;
+	console.log(opentab);
 
-	if(islinetab == true) {
-		let ischeck = num_form.check.checked;
-		let iscentercheck = num_form.centercheck.checked;
-		let isaddcheck = num_form.addcheck.checked;
-
-		if(ischeck == true){
-			isLineRemove = false;
-		}else{
-			isLineRemove = true;
-		}
-
-		if(iscentercheck == true) {
-			startPoint.x = Math.floor(canvas_width/2);
-			startPoint.y = Math.floor(canvas_height/2);
-			num_form.addcheck.checked = false;
-			isaddcheck == false;
-		}else{
-			if(isaddcheck == true) {
-				startPoint.x = x2;
-				startPoint.y = y2;
-				num_form.centercheck.checked = false;
-				iscentercheck = false;
-			} else {
-				startPoint.x = 0;
-				startPoint.y = 0;
+	switch (opentab) {
+		// 直線ツールが選択されている時
+		case 1:
+			let ischeck = num_form.check.checked;
+			let iscentercheck = num_form.centercheck.checked;
+			let isaddcheck = num_form.addcheck.checked;
+			if(ischeck == true){
+				isLineRemove = false;
+			}else{
+				isLineRemove = true;
 			}
-		}
-
-		getPointByDistanceAndDegree(distance_number, number);
-
-		isLineNull = false;
-
-	} else if(iscircletab == true) {
-		canvas_width = (radius_number * 2 + 1);
-		canvas_height = (radius_number * 2 + 1);
-		canvas.width  = canvas_width * canvas_magnification;
-		canvas.height = canvas_height * canvas_magnification;  
-		drawRule();
-		drawCircle(Math.floor(canvas_width/2), Math.floor(canvas_height/2), radius_number);
-	} else if(ispolygontab == true) {
-		let polygon_number = document.getElementById("polygon_input_id").value;
-		let polygon_degree = document.getElementById("polygon_degree_form").value;
-		let polygon_distance = document.getElementById("polygon_distance_form").value;
-
-		var radDiv = 180 * (parseInt(polygon_number) - 2) / parseInt(polygon_number);
-		var nowdegree = 0;
-		var adddegree = 0;
-		var i;
-		for (i = 0; i <= polygon_number - 1; i++) {
-			if (i == 0) {
+			if(iscentercheck == true) {
 				startPoint.x = Math.floor(canvas_width/2);
 				startPoint.y = Math.floor(canvas_height/2);
-				num_form.centercheck.checked = false;
-				iscentercheck = false;
-				nowdegree = parseInt(polygon_degree);
-				adddegree = parseInt(nowdegree);
-				console.log(adddegree);
-				getPointByDistanceAndDegree(polygon_distance, nowdegree);
-			} else {
-				startPoint.x = x2;
-				startPoint.y = y2;
-				num_form.centercheck.checked = false;
-				iscentercheck = false;
-				nowdegree = adddegree;
-				adddegree = parseInt(nowdegree) + 180 - parseInt(radDiv);
-				console.log(adddegree);
-				getPointByDistanceAndDegree(polygon_distance, adddegree);
+				num_form.addcheck.checked = false;
+				isaddcheck == false;
+			}else{
+				if(isaddcheck == true) {
+					startPoint.x = x2;
+					startPoint.y = y2;
+					num_form.centercheck.checked = false;
+					iscentercheck = false;
+				} else {
+					startPoint.x = 0;
+					startPoint.y = 0;
+				}
 			}
-		}
+			getPointByDistanceAndDegree(distance_number, number);
+			isLineNull = false;
+			break;
+		// 多角形ツールが選択されている時
+		case 4:
+			canvas_width = (gridval);
+			canvas_height = (gridval);
+			canvas.width  = canvas_width * canvas_magnification;
+			canvas.height = canvas_height * canvas_magnification;
+			lineRemove();
+			drawPolygon();
+			break;
 	}
 }
 
 $(window).ready(function(){
 	$('#grid_input_id').on('change', function() {
-		let gridval = $(this).val();
+		gridval = $(this).val();
 		canvas_width = (gridval);
 		canvas_height = (gridval);
 		canvas.width  = canvas_width * canvas_magnification;
@@ -223,7 +197,7 @@ function getPointByDistanceAndDegree(distance, degree){
 	y2 = startPoint.y + distance * Math.sin( degree * (Math.PI / 180) );
 
 	drawline(startPoint.x,startPoint.y,x2,y2);
-}
+};
 
 // 引数で渡された半径から縁を描画する関数
 var drawCircle = function (x0, y0, radius) {
@@ -266,8 +240,7 @@ var drawCircle = function (x0, y0, radius) {
 };
 
 // 引数で渡された横幅と縦幅から縁を楕円する関数
-function drawEllipse (xc, yc, width, height)
-{
+function drawEllipse (xc, yc, width, height) {
 	let a2 = Math.floor(width * width);
 	let b2 = Math.floor(height * height);
 	let h = Math.floor(height);
@@ -314,7 +287,41 @@ function drawEllipse (xc, yc, width, height)
 		sigma += a2 * ((4 * y) + 6);
 	}
 	drawRule();
-}
+};
+
+// 多角形を描画する関数
+function drawPolygon() {
+	const polygon_number = document.getElementById("polygon_input_id").value;
+	const polygon_degree = document.getElementById("polygon_degree_form").value;
+	const polygon_distance = document.getElementById("polygon_distance_form").value;
+
+	const radDiv = 180 * (parseInt(polygon_number) - 2) / parseInt(polygon_number);
+
+	var nowdegree = 0;
+	var adddegree = 0;
+	var i;
+	for (i = 0; i <= polygon_number - 1; i++) {
+		if (i == 0) {
+			startPoint.x = Math.floor(canvas_width/2);
+			startPoint.y = Math.floor(canvas_height/2);
+			num_form.centercheck.checked = false;
+			iscentercheck = false;
+			nowdegree = parseInt(polygon_degree);
+			adddegree = parseInt(nowdegree);
+			console.log(adddegree);
+			getPointByDistanceAndDegree(polygon_distance, nowdegree);
+		} else {
+			startPoint.x = x2;
+			startPoint.y = y2;
+			num_form.centercheck.checked = false;
+			iscentercheck = false;
+			nowdegree = adddegree;
+			adddegree = parseInt(nowdegree) + 180 - parseInt(radDiv);
+			console.log(adddegree);
+			getPointByDistanceAndDegree(polygon_distance, adddegree);
+		}
+	}
+};
 
 ///// イベント
 
@@ -328,24 +335,19 @@ window.onload = function (){
 	ctx = canvas.getContext("2d");
 
 	init_canvas();             
-}
+};
 
 function lineclick() {
-	islinetab = true;
-	iscircletab = false;
-	ispolygontab = false;
-}
-
-function circleclick() {
-	islinetab = false;
-	iscircletab = true;
-	ispolygontab = false;
-}
+	opentab = 1;
+};
 
 function polygonclick() {
-	islinetab = false;
-	iscircletab = false;
-	ispolygontab = true;
+	opentab = 4;
+};
+
+function lineRemove() {
+	ctx.fillStyle = "#272121";  
+	ctx.fillRect(0,0,canvas.width,canvas.height);
 }
 
 // 引数で渡された第一座標と第二座標で直線を描画する関数
@@ -353,8 +355,7 @@ let drawline = function(x0,y0,x1,y1){
 	let iscentercheck = num_form.centercheck.checked;
 
 	if (isLineRemove == true) {
-		ctx.fillStyle = "#272121";  
-		ctx.fillRect(0,0,canvas.width,canvas.height);
+		lineRemove();
 	}
 	let tmp;
 	let steep = Math.abs(y1-y0) > Math.abs(x1-x0);
@@ -363,14 +364,14 @@ let drawline = function(x0,y0,x1,y1){
     tmp=x0; x0=y0; y0=tmp;
     //swap x1,y1
     tmp=x1; x1=y1; y1=tmp;
-}
+};
 
 let sign = 1;
 if (x0>x1) {
 	sign = -1;
 	x0 *= -1;
 	x1 *= -1;
-}
+};
 let dx = x1-x0;
 let dy = Math.abs(y1-y0);
 let err = ((dx/2));
@@ -384,9 +385,9 @@ for (let x=x0;x<=x1;x++) {
 		y+=ystep;
 		err+=dx;
 	}
-}
+};
 drawRule();
-}
+};
 
 // ここで直線を描画
 let plot = function(x,y){
@@ -398,23 +399,23 @@ let plot = function(x,y){
 		canvas_magnification, canvas_magnification);
 
 	return true;
-}
+};
 
 // グリッドを画像に変換してダウンロードする関数
 function image() {
-	let type = 'image/png';
-	let canvas = document.getElementById('MyCanvas');
-	let data = canvas.toDataURL(type);
-	let bin = atob(data.split(',')[1]);
-	let buffer = new Uint8Array(bin.length);
+	const type = 'image/png';
+	const canvas = document.getElementById('MyCanvas');
+	const data = canvas.toDataURL(type);
+	const bin = atob(data.split(',')[1]);
+	const buffer = new Uint8Array(bin.length);
 
 	for (var i = 0; i < bin.length; i++) {
 		buffer[i] = bin.charCodeAt(i);
 	}
 
-	let blob = new Blob([buffer.buffer], {type: type});
-	let url = window.URL.createObjectURL(blob);
+	const blob = new Blob([buffer.buffer], {type: type});
+	const url = window.URL.createObjectURL(blob);
 
-	let downloader = $('#download');
+	const downloader = $('#download');
 	downloader.attr('href', url);
 }
