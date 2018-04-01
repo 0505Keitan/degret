@@ -86,6 +86,7 @@ body {
 .card {
 	margin-top: 10px;
 	margin-bottom: 0px;
+	border: none !important; 
 }
 
 .card-body {
@@ -136,13 +137,23 @@ body {
 	margin-bottom: 20px;
 	background: #363333;
 	margin-top: 0px;
+	overflow: hidden;
+	border-bottom: 1px solid #000;
+}
+
+.card-container {
+	border-bottom: 1px solid #000;
+}
+
+.card-header:first-child {
+	border-radius: 0 0 0 0;
 }
 
 .card-header {
 	text-align: center;
 	padding: 10px;
 	background-color: #363333;
-	border-bottom: 1px solid #272121;
+	border: 1px solid #272121;
 }
 
 .card-about {
@@ -209,7 +220,9 @@ body {
 	float: left;
 	padding: 0px;
 	z-index: 10;
-	border-top: 1px solid #000;
+	border: 1px solid #000;
+	padding-bottom: 1000px;
+	margin-bottom: -1000px;
 }
 
 .card-developer {
@@ -232,6 +245,7 @@ body {
 
 .card-body {
 	background-color: #363333;
+	position: relative;
 }
 
 .card-body > a {
@@ -254,8 +268,9 @@ body {
 	padding-left: 0px;
 	padding-right: 0px;
 	height: 100%;
-	border-top: 1px solid #000;
-
+	border: 1px solid #000;
+	padding-bottom: 1000px;
+	margin-bottom: -1000px;
 }
 
 .top-hr {
@@ -327,6 +342,7 @@ body {
 .nav-tabs {
 	border-style: none;
 	background-color: #272121;
+	border-top: 1px solid #000;
 }
 
 .nav-tabs .nav-link {
@@ -348,6 +364,7 @@ body {
 	padding: 20px;
 	background-color: #272121;
 	width: 100%;
+	border-top: 1px solid #000;
 }
 
 #MyCanvas {
@@ -393,15 +410,18 @@ body {
 	}
 }
 
-#loading {
-	width: 96px; /* gif画像の幅 
-	height: 96px; /* gif画像の高さ */
-	margin: -68px 0 0 -68px; /* gif画像を画面中央に */
-	position: fixed; /* gif画像をスクロールさせない */
-	left: 50%; /* gif画像を画面横中央へ */
-	top: 50%; /* gif画像を画面縦中央へ */
-	z-index: 20;
-}
+.snsbtn32{margin:0 0 1em 0;}
+.snsbtn32 a{display:inline-block;width:41px;height:41px;margin:0 8px 0 0;line-height:41px;color:#fff;text-align:center;border-radius:50%;}
+.snsbtn32 a i:before{margin:0 0 0 0;display:inline-block;font-size:20px;line-height:41px;}
+.snsbtn32 a i{vertical-align:top;}
+.snsbtn32 .btn-fb{border: 1px solid #fff;}
+.snsbtn32 .btn-tw{border: 1px solid #fff;}
+.snsbtn32 .btn-po{border: 1px solid #fff;}
+.snsbtn32 .btn-gp{border: 1px solid #fff;margin-right: 0;}
+.snsbtn32 .btn-fb:hover{background:#363333;}
+.snsbtn32 .btn-tw:hover{background:#363333;}
+.snsbtn32 .btn-po:hover{background:#363333;}
+.snsbtn32 .btn-gp:hover{background:#363333;}
 
 footer {
 	cursor: pointer;
