@@ -30,12 +30,6 @@ let y2 = 0;
 let ellipsewidth = 41;
 let ellipseheight = 41;
 
-let isLineRemove = false;
-let isLineNull = true;
-let islinetab = true;
-let iscircletab = false;
-let ispolygontab = false;
-
 let opentab = 1;
 
 ///// 内部関数
@@ -100,47 +94,43 @@ function numchange(){
 	const number = document.getElementById("number_form").value;
 	const distance_number = document.getElementById("distance_form").value;
 	const radius_number = document.getElementById("radius_input_id").value;
-	console.log(opentab);
 
 	switch (opentab) {
 		// 直線ツールが選択されている時
 		case 1:
-			let ischeck = num_form.check.checked;
-			let iscentercheck = num_form.centercheck.checked;
-			let isaddcheck = num_form.addcheck.checked;
-			if(ischeck == true){
-				isLineRemove = false;
-			}else{
-				isLineRemove = true;
+		let ischeck = num_form.check.checked;
+		let iscentercheck = num_form.centercheck.checked;
+		let isaddcheck = num_form.addcheck.checked;
+		if(ischeck == false){
+			lineRemove();
+		}
+		if(iscentercheck == true) {
+			startPoint.x = Math.floor(canvas_width/2);
+			startPoint.y = Math.floor(canvas_height/2);
+			num_form.addcheck.checked = false;
+			isaddcheck == false;
+		}else{
+			if(isaddcheck == true) {
+				startPoint.x = x2;
+				startPoint.y = y2;
+				num_form.centercheck.checked = false;
+				iscentercheck = false;
+			} else {
+				startPoint.x = 0;
+				startPoint.y = 0;
 			}
-			if(iscentercheck == true) {
-				startPoint.x = Math.floor(canvas_width/2);
-				startPoint.y = Math.floor(canvas_height/2);
-				num_form.addcheck.checked = false;
-				isaddcheck == false;
-			}else{
-				if(isaddcheck == true) {
-					startPoint.x = x2;
-					startPoint.y = y2;
-					num_form.centercheck.checked = false;
-					iscentercheck = false;
-				} else {
-					startPoint.x = 0;
-					startPoint.y = 0;
-				}
-			}
-			getPointByDistanceAndDegree(distance_number, number);
-			isLineNull = false;
-			break;
+		}
+		getPointByDistanceAndDegree(distance_number, number);
+		savecanvasdata();
+		break;
 		// 多角形ツールが選択されている時
 		case 4:
-			canvas_width = (gridval);
-			canvas_height = (gridval);
-			canvas.width  = canvas_width * canvas_magnification;
-			canvas.height = canvas_height * canvas_magnification;
-			lineRemove();
-			drawPolygon();
-			break;
+		canvas_width = (gridval);
+		canvas_height = (gridval);
+		canvas.width  = canvas_width * canvas_magnification;
+		canvas.height = canvas_height * canvas_magnification;
+		drawPolygon();
+		break;
 	}
 }
 
@@ -173,8 +163,6 @@ $(window).ready(function(){
 		canvas_height = (ellipseheight * 2 + 1);
 		canvas.width  = canvas_width * canvas_magnification;
 		canvas.height = canvas_height * canvas_magnification;
-		console.log(canvas_width);
-		console.log(canvas_height);
 		drawEllipse(Math.floor(canvas_width/2), Math.floor(canvas_height/2), ellipsewidth, ellipseheight);
 		drawRule();
 	})
@@ -184,8 +172,6 @@ $(window).ready(function(){
 		canvas_height = (ellipseheight * 2 + 1);
 		canvas.width  = canvas_width * canvas_magnification;
 		canvas.height = canvas_height * canvas_magnification;
-		console.log(canvas_width);
-		console.log(canvas_height);
 		drawEllipse(Math.floor(canvas_width/2), Math.floor(canvas_height/2), ellipsewidth, ellipseheight);
 		drawRule();
 	})
@@ -310,7 +296,6 @@ function drawPolygon() {
 			iscentercheck = false;
 			nowdegree = parseInt(polygon_degree);
 			adddegree = parseInt(nowdegree);
-			console.log(adddegree);
 			getPointByDistanceAndDegree(polygon_distance, nowdegree);
 		} else {
 			startPoint.x = x2;
@@ -319,7 +304,6 @@ function drawPolygon() {
 			iscentercheck = false;
 			nowdegree = adddegree;
 			adddegree = parseInt(nowdegree) + 180 - parseInt(radDiv);
-			console.log(adddegree);
 			getPointByDistanceAndDegree(polygon_distance, adddegree);
 		}
 	}
@@ -355,11 +339,7 @@ function lineRemove() {
 
 // 引数で渡された第一座標と第二座標で直線を描画する関数
 let drawline = function(x0,y0,x1,y1){
-	let iscentercheck = num_form.centercheck.checked;
 
-	if (isLineRemove == true) {
-		lineRemove();
-	}
 	let tmp;
 	let steep = Math.abs(y1-y0) > Math.abs(x1-x0);
 	if(steep){
