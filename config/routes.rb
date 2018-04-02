@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   root to: 'model#index'
   get '/about', to: 'model#about'
+  get '/contact', to: 'model#contact'
 end

@@ -4,4 +4,7 @@ class ModelController < ApplicationController
 
 	def about
 	end
+
+	def contacts
+	end
 end
