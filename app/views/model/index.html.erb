@@ -31,7 +31,7 @@
 						</ul>
 						<div class="tab-content">
 							<form name="num_form" class="tab-pane active" id="tabline">
-								<div class="form-group row">
+								<div class="form-group row form_class">
 									<label for="grid_form" class="col-sm-4 col-form-label radius-form">グリッドの大きさ : <output name="grid_form" id="grid_output_id">41</output></label>
 									<div class="col-sm-8">
 										<input type="range" name="grid_form" id="grid_input_id" class="input-range" value="41" min="3" max="257" oninput="grid_output_id.value = grid_input_id.value">
@@ -82,8 +82,8 @@
 								<h6 style="font-size: 0.8em;color: #f46e41;font-weight: 300;">*始点については、同時に2つのオプションを指定することはできません</h6>
 								<div class="form-group row">
 									<div class="col-sm-10">
-										<input type="button" class="button button1" value="更新" onclick="numchange()">
-										<input type="button" class="button button1" value="クリア" onclick="init_canvas();">
+										<input type="button" class="button_class" value="更新" onclick="numchange()">
+										<input type="button" class="button_class" value="クリア" onclick="init_canvas();">
 										<!-- <a class="twitter-share-button"
 										href="https://twitter.com/intent/tweet?text=Degret | ブロック設置補助ツール &url=https://www.degret.net" style="margin-left: 20px;margin-top: 8px;"></a>
 										<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.degret.net&width=130&layout=button_count&action=like&size=small&show_faces=false&share=true&height=46&appId=371648649975589" width="130" height="46" style="border:none;overflow:hidden;vertical-align: top;margin-top: 8px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe> -->
@@ -91,7 +91,7 @@
 								</div>
 							</form>
 							<form name="num_form_circle" class="tab-pane" id="tabcircle">
-								<div class="form-group row">
+								<div class="form-group row form_class">
 									<label for="radius_form" class="col-sm-4 col-form-label radius-form">円の半径 : <output name="radius_form" id="radius_output_id">41</output></label>
 									<div class="col-sm-8">
 										<input type="range" name="radius_form" id="radius_input_id" class="input-range" value="20" min="1" max="128" oninput="radius_output_id.value = radius_input_id.value">
@@ -100,7 +100,7 @@
 								<div class="form-group row">
 									<div class="col-sm-10">
 										<!-- <input type="button" class="button button1" value="更新" onclick="numchange()"> -->
-										<input type="button" class="button button1" value="クリア" onclick="init_canvas();">
+										<input type="button" class="button_class" value="クリア" onclick="init_canvas();">
 									</div>
 								</div>
 							</form>
@@ -111,7 +111,7 @@
 										<input type="range" name="ellipse_width_form" id="ellipse_width_input_id" class="input-range" value="41" min="5" max="128" oninput="ellipse_width_output_id.value = ellipse_width_input_id.value">
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="form-group row form_class">
 									<label for="ellipse_height_form" class="col-sm-4 col-form-label ellipse-form">楕円の縦幅の半径 : <output name="ellipse_height_form" id="ellipse_height_output_id">41</output></label>
 									<div class="col-sm-8">
 										<input type="range" name="ellipse_height_form" id="ellipse_height_input_id" class="input-range" value="41" min="5" max="128" oninput="ellipse_height_output_id.value = ellipse_height_input_id.value">
@@ -120,7 +120,7 @@
 								<div class="form-group row">
 									<div class="col-sm-10">
 										<!-- <input type="button" class="button button1" value="更新" onclick="numchange()"> -->
-										<input type="button" class="button button1" value="クリア" onclick="init_canvas();">
+										<input type="button" class="button_class" value="クリア" onclick="init_canvas();">
 									</div>
 								</div>
 							</form>
@@ -144,7 +144,7 @@
 										<input type="number" class="form-control" id="polygon_degree_form" placeholder="0" min="0" max="360">
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="form-group row form_class">
 									<label for="polygon_distance_form" class="col-sm-4 col-form-label">多角形の一辺の長さ :</label>
 									<div class="col-sm-8">
 										<input type="number" class="form-control" id="polygon_distance_form" placeholder="1" min="1" max="30">
@@ -153,15 +153,15 @@
 								<div class="form-group row">
 									<div class="col-sm-10">
 										<!-- <input type="button" class="button button1" value="更新" onclick="numchange()"> -->
-										<input type="button" class="button button1" value="更新" onclick="numchange()">
-										<input type="button" class="button button1" value="クリア" onclick="init_canvas();">
+										<input type="button" class="button_class" value="更新" onclick="numchange()">
+										<input type="button" class="button_class" value="クリア" onclick="init_canvas();">
 									</div>
 								</div>
 							</form>
 							<form name="share_form" class="tab-pane" id="tabshare">
 								<div class="form-group row">
 									<div class="col-sm-12">
-										<a class="button button1" download="degret.jpg" id="download" onclick="image()">画像をダウンロード</a>
+										<a class="button_class" download="degret.jpg" id="download" onclick="image()">画像をダウンロード</a>
 									</div>
 								</div>
 							</form>
@@ -176,12 +176,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="snsbtn32 text-center">
-		<a href="http://www.facebook.com/sharer.php?u=https://www.degret.net/" class="btn-fb"><i class="fa fa-facebook"></i></a>
-		<a href="http://twitter.com/share?text=Degret%20%7c%20%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e8%a8%ad%e7%bd%ae%e8%a3%9c%e5%8a%a9%e3%83%84%e3%83%bc%e3%83%ab/&url=https://www.degret.net/&related=orefolder" onclick="window.open('http://twitter.com/share?text=Degret%20%7c%20%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e8%a8%ad%e7%bd%ae%e8%a3%9c%e5%8a%a9%e3%83%84%e3%83%bc%e3%83%ab/&url=https://www.degret.net/&related=orefolder', '', 'width=500,height=400'); return false;" class="btn-tw"><i class="fa fa-twitter"></i></a>
-		<a href="http://getpocket.com/edit?url=https://www.degret.net/&title=Degret | ブロック設置補助ツール" class="btn-po"><i class="fa fa-get-pocket"></i></a>
-		<a href="https://plus.google.com/share?url=https://www.degret.net/"  onclick="window.open(this.href, 'GooglePlusWindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;" class="btn-gp" ><i class="fa fa-google-plus"></i></a>
 	</div>
 	<%= render 'layouts/footer' %>
 </body>

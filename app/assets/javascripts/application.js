@@ -121,7 +121,6 @@ function numchange(){
 			}
 		}
 		getPointByDistanceAndDegree(distance_number, number);
-		savecanvasdata();
 		break;
 		// 多角形ツールが選択されている時
 		case 4:

@@ -414,14 +414,63 @@ body {
 .snsbtn32 a{display:inline-block;width:41px;height:41px;margin:0 8px 0 0;line-height:41px;color:#fff;text-align:center;border-radius:50%;}
 .snsbtn32 a i:before{margin:0 0 0 0;display:inline-block;font-size:20px;line-height:41px;}
 .snsbtn32 a i{vertical-align:top;}
-.snsbtn32 .btn-fb{border: 1px solid #fff;}
-.snsbtn32 .btn-tw{border: 1px solid #fff;}
-.snsbtn32 .btn-po{border: 1px solid #fff;}
-.snsbtn32 .btn-gp{border: 1px solid #fff;margin-right: 0;}
-.snsbtn32 .btn-fb:hover{background:#363333;}
-.snsbtn32 .btn-tw:hover{background:#363333;}
-.snsbtn32 .btn-po:hover{background:#363333;}
-.snsbtn32 .btn-gp:hover{background:#363333;}
+.snsbtn32 .btn-fb{border: 1px solid #fff;transition: background-color 0.7s;}
+.snsbtn32 .btn-tw{border: 1px solid #fff;transition: background-color 0.7s;}
+.snsbtn32 .btn-po{border: 1px solid #fff;transition: background-color 0.7s;}
+.snsbtn32 .btn-gp{border: 1px solid #fff;margin-right: 0;transition: background-color 0.7s;}
+.snsbtn32 .btn-fb:hover{background:#6d6d6d;}
+.snsbtn32 .btn-tw:hover{background:#6d6d6d;}
+.snsbtn32 .btn-po:hover{background:#6d6d6d;}
+.snsbtn32 .btn-gp:hover{background:#6d6d6d;}
+
+.square_btn{
+    display: inline-block;
+    padding: 7px 20px;
+    margin-bottom: 20px;
+	border-radius: 25px;
+    text-decoration: none;
+    color: #FFF;
+    transition: .4s;
+    background-color: #363333;
+    font-size: 0.8em;
+}
+
+.square_btn::before {
+	content: "\f2da";
+	font-family: FontAwesome;
+	font-size: 1.2em;
+	padding-right: 5px;
+}
+
+.square_btn:hover {
+    color: #FFF;
+    text-decoration: none;
+    background-color: #686666;
+}
+
+.button_class{
+    display: inline-block;
+    padding: 7px 20px;
+	border-radius: 25px;
+    text-decoration: none;
+    color: #FFF;
+    transition: .4s;
+    background-color: #686666;
+    font-size: 0.9em;
+    border: none;
+    margin: 10px 10px 0px 0px;
+    cursor: pointer;
+}
+
+.button_class:hover {
+    color: #FFF;
+    text-decoration: none;
+    background-color: #777676;
+}
+
+.form_class {
+    margin-bottom: 0px; 
+}
 
 footer {
 	cursor: pointer;
