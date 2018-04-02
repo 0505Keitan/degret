@@ -424,15 +424,15 @@ body {
 .snsbtn32 .btn-gp:hover{background:#6d6d6d;}
 
 .square_btn{
-    display: inline-block;
-    padding: 7px 20px;
-    margin-bottom: 20px;
+	display: inline-block;
+	padding: 7px 20px;
+	margin-bottom: 20px;
 	border-radius: 25px;
-    text-decoration: none;
-    color: #FFF;
-    transition: .4s;
-    background-color: #363333;
-    font-size: 0.8em;
+	text-decoration: none;
+	color: #FFF;
+	transition: .4s;
+	background-color: #363333;
+	font-size: 0.8em;
 }
 
 .square_btn::before {
@@ -443,33 +443,53 @@ body {
 }
 
 .square_btn:hover {
-    color: #FFF;
-    text-decoration: none;
-    background-color: #686666;
+	color: #FFF;
+	text-decoration: none;
+	background-color: #686666;
 }
 
 .button_class{
-    display: inline-block;
-    padding: 7px 20px;
+	display: inline-block;
+	padding: 7px 20px;
 	border-radius: 25px;
-    text-decoration: none;
-    color: #FFF;
-    transition: .4s;
-    background-color: #686666;
-    font-size: 0.9em;
-    border: none;
-    margin: 10px 10px 0px 0px;
-    cursor: pointer;
+	text-decoration: none;
+	color: #FFF;
+	transition: .4s;
+	background-color: #686666;
+	font-size: 0.9em;
+	border: none;
+	margin: 10px 10px 0px 0px;
+	cursor: pointer;
 }
 
 .button_class:hover {
-    color: #FFF;
-    text-decoration: none;
-    background-color: #777676;
+	color: #FFF;
+	text-decoration: none;
+	background-color: #777676;
 }
 
 .form_class {
-    margin-bottom: 0px; 
+	margin-bottom: 0px; 
+}
+
+.marquee {
+	background-color: #363333;
+	border-top: #000;
+}
+.marquee p {
+	margin:0; 
+	padding-left:724px; 
+	display:inline-block; 
+	white-space:nowrap;
+	animation-name:marquee; 
+	animation-timing-function:linear;
+	animation-duration:15s; 
+	animation-iteration-count:infinite;
+	font-size: 0.7em;
+}
+@keyframes marquee {
+	from   { transform: translate(0%);} 
+	99%,to { transform: translate(-100%);}
 }
 
 footer {
