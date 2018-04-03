@@ -332,7 +332,7 @@ function polygonclick() {
 
 // グリッド状の線を全て消す関数
 function lineRemove() {
-	ctx.fillStyle = "#272121";  
+	ctx.fillStyle = "#363333";  
 	ctx.fillRect(0,0,canvas.width,canvas.height);
 }
 
